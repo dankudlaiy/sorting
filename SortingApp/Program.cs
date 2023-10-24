@@ -10,9 +10,9 @@ while (true)
     
     Base.NewLine();
 
-    var mergeSorter = new MergeSorter();
+    var sorter = new InsertionSorter();
 
-    var sortedList = mergeSorter.Sort(randomList);
+    var sortedList = sorter.Sort(randomList);
 
     Base.Print("sorted list: ", sortedList);
     

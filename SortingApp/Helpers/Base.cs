@@ -26,4 +26,14 @@ public static class Base
     {
         Console.Write("\n");
     }
+
+    public static bool Swap(List<int> list, int a, int b)
+    {
+        if(a >= list.Count || b >= list.Count || a < 0 || b < 0)
+            return false;
+        
+        (list[b], list[a]) = (list[a], list[b]);
+
+        return true;
+    }
 }
