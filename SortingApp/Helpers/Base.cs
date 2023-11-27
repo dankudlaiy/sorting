@@ -2,18 +2,16 @@ namespace SortingApp.Helpers;
 
 public static class Base
 {
-    public static void Print(List<int> list)
+    public static void Print(string msg, List<int> list)
     {
+        Console.Write(msg);
+        
         foreach (var el in list)
         {
             Console.Write($"{el} ");
         }
-    }
 
-    public static void Print(string msg, List<int> list)
-    {
-        Console.Write(msg);
-        Print(list);
+        Console.WriteLine();
     }
 
     public static void ClearConsole()
@@ -22,9 +20,9 @@ public static class Base
         Console.Clear();
     }
 
-    public static void NewLine()
+    public static bool IsSorted(List<int> list)
     {
-        Console.Write("\n");
+        return list.Zip(list.Skip(1), (a, b) => a <= b).All(x => x);
     }
 
     public static bool Swap(List<int> list, int a, int b)

@@ -1,6 +1,6 @@
 namespace SortingApp.Sorters;
 
-public class MergeSorter
+public class MergeSorter : ISorter
 {
     public List<int> Sort(List<int> list)
     {
@@ -45,5 +45,10 @@ public class MergeSorter
         }
 
         return sorted;
+    }
+
+    public string GetName()
+    {
+        return "merge sort";
     }
 }

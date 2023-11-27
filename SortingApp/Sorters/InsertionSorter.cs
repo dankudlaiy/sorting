@@ -2,7 +2,7 @@ using SortingApp.Helpers;
 
 namespace SortingApp.Sorters;
 
-public class InsertionSorter
+public class InsertionSorter : ISorter
 {
     public List<int> Sort(List<int> list)
     {
@@ -20,5 +20,10 @@ public class InsertionSorter
         }
 
         return list;
+    }
+
+    public string GetName()
+    {
+        return "insertion sort";
     }
 }
