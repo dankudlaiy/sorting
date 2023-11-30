@@ -10,30 +10,48 @@ var sorterTypes = AppDomain.CurrentDomain.GetAssemblies()
     .Where(p => typeof(ISorter).IsAssignableFrom(p) && !p.IsInterface)
     .ToList();
 
-while (true)
+var sorters = sorterTypes.Select(type => (ISorter)Activator.CreateInstance(type)!).ToList();
+
+using var streamTxt = new StreamWriter("results.txt");
+using var streamCsv = new StreamWriter("results.csv");
+
+streamTxt.Write($"Size \t"); streamCsv.Write("size");
+
+foreach (var sorter in sorters)
 {
-    var randomList = Generator.GenerateList();
-    
-    Console.WriteLine($"Generated list ({randomList.Count})\n");
+    streamTxt.Write($"{sorter.GetName()}\t"); streamCsv.Write($", {sorter.GetName()}");
+}
 
-    foreach (var type in sorterTypes)
+streamTxt.WriteLine(); streamCsv.WriteLine();
+
+for (var i = 1; i < 4; i++)
+{
+    for (var j = 1; j < 10; j++)
     {
-        var sorter = (ISorter)Activator.CreateInstance(type)!;
+        var size = (int)Math.Pow(10, i) * j;
 
-        var name = sorter.GetName();
+        var list = Generator.GenerateList(size);
+        
+        streamTxt.Write($"{size} \t"); streamCsv.Write($"{size}");
 
-        stopwatch.Start();
+        foreach (var sorter in sorters)
+        {
+            stopwatch.Start();
 
-        var resultList = sorter.Sort(randomList);
+            var resultList = sorter.Sort(list);
 
-        stopwatch.Stop();
+            stopwatch.Stop();
 
-        var isSorted = Base.IsSorted(resultList);
+            var isSorted = Base.IsSorted(resultList);
 
-        Console.WriteLine($"{name}, {stopwatch.ElapsedMilliseconds} mls, {(isSorted ? "sorted" : "not sorted")}");
-
-        stopwatch.Reset();
+            var res = Math.Round(stopwatch.Elapsed.Ticks / (double)1000, 2);
+            
+            streamTxt.Write(isSorted ? $"{res}\t\t" : "f \t");
+            streamCsv.Write(isSorted ? $", {res}" : ", f");
+            
+            stopwatch.Reset();
+        }
+        
+        streamTxt.WriteLine(); streamCsv.WriteLine();
     }
-    
-    Base.ClearConsole();
 }
