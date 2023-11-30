@@ -4,7 +4,7 @@ public static class Generator
 {
     private static readonly Random Random = new();
     
-    private const int MinElementValue = -1000;
+    private const int MinElementValue = 1;
     private const int MaxElementValue = 1000;
 
     public static List<int> GenerateList(int size)

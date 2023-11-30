@@ -1,0 +1,48 @@
+Comparative analysis of Radix, Heap, Insertion, Merge and Quick Sort Algorithms
+
+1 Introduction
+The first project objection is to compare radixsort, heapsort, insertionsort, mergesort and quicksort algorithms. 
+The project code will be written in c# for sorting algorithms and writing the measurement results to file and python to generate graph as an image.
+
+2.1 Radix Sort
+Efficient for integers or strings with fixed size (radix).
+Time complexity depends on the number of digits or characters in the input.
+Linear time complexity O(nk) for integers, where k is the number of digits.
+Space complexity may be a concern for large data sets.
+
+2.2 Heap Sort
+Efficient for large data sets and provides a stable sort.
+Time complexity is O(n log n) in all cases.
+In-place sorting algorithm with no quadratic worst-case scenarios.
+Less cache-efficient compared to quicksort.
+
+2.3 Merge Sort
+Introduce the Merge Sort algorithm.
+Discuss its divide-and-conquer strategy and O(n log n) time complexity.
+Mention whether Merge Sort is a stable sorting algorithm.
+
+2.4 Quick Sort
+Present an overview of the Quick Sort algorithm.
+Discuss its partitioning strategy and average-case O(n log n) time complexity.
+Address the potential worst-case scenario and stability concerns.
+
+
+3.1 Data Generation
+Explain how you generated input data for the algorithms.
+Discuss any considerations in designing your test cases.
+Highlight the range of array sizes and potential input scenarios.
+
+3.2 Comparison Setup
+Describe the experimental setup for comparing sorting algorithms.
+Detail any tools or platforms used for benchmarking.
+Provide clarity on the metrics used for comparison.
+
+
+4.1 Data Presentation
+Input data is generated randomly. Values borders are (1, 10000) and list sizes are from 10 to 9000.
+Algorithms work time is measured by stopwatches and data is saving as txt and csv files.
+Python script generates a graph that displays difference between them.
+
+4.2 Observations
+As we can see from graph and output data radix, merge and heap sort have approximately the same efficiency in my implementation.
+Quick sort needs noticeably more time and insertion sort is the slowest one.
